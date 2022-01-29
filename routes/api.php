@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/guardar-formulario', "App\Http\Controllers\PostController@guardarFormulario")->name('guardarFormulario');
 
 Route::get('/mostrar-formulario', "App\Http\Controllers\PostController@nuevoFormulario");
+

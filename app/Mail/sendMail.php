@@ -7,10 +7,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Mail extends Mailable
+class sendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $details;
     /**
      * Create a new message instance.
      *
@@ -18,10 +19,10 @@ class Mail extends Mailable
      */
     public function __construct($detail)
     {
+        // dd('Se envio el mail');
         $this->details = $detail;
-        //
-        
     }
+
     /**
      * Build the message.
      *
@@ -29,6 +30,6 @@ class Mail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->subject('Prueba del envio de mensaje')->view('mail');
     }
 }

@@ -18,7 +18,7 @@ class FormulariosSeeder extends Seeder
         Post::create([
             'nombre'=>'Jose',
             'email'=>'nolose@gmail.com',
-            'telefono'=>' ',
+            'telefono'=>'2321234',
             'mensaje'=>'esto es una prueba'
         ]);
     }

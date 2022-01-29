@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Post;
 
-use App\Mail\Mail;
+use App\Mail\sendMail;
 
 class PostController extends Controller
 {
@@ -17,27 +17,30 @@ class PostController extends Controller
         $status = '';
         if(empty($email)){
             Post::create([
-            'name'=> $request->name,
+            'nombre'=> $request->nombre,
             'email' => $request->email,
             'telefono' => $request->telefono,
             'mensaje' => $request->mensaje
             ]);
-            // $status = 'GUARDADO';
-            dd('Su consulta fue guardada con exito');
+             $status = 'GUARDADO';
+               
         }else{
-            // $status = 'YA EXISTE';
+             $status = 'YA EXISTE';
             dd('El email ya exite');
             
         }
 
         $details = [
-            'name' => 'name: ' . $request->name,
-            'body' => $request->email . ' ESTADO = ' . $status
-        ];
-        // \Mail::to(env('adrianammendola@icloud.com'))->send(new \App\Mail\Mail($details));
-}
+            'title' => 'Post title: ' . $request->nombre,
+            'body' => $request->mensaje
+    ];
+        
+        \Mail::to('adrianammendola92@gmail.com')->send(new \App\Mail\sendMail($details));
+        
+    }
 
     public function nuevoFormulario(){
         return view('formulario');
     }
+
 }
